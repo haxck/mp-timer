@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="wrapper">
+    <view class="container">
+        <mp-half-screen-dialog bindbuttontap="buttontap" show="{{show}}" maskClosable="True" title="新建倒计时"
+            buttons="{{buttons}}">
+            <view slot="desc">
+
+                <mp-cells>
+                    <mp-cell>
+                        <view>主题</view>
+                        <input placeholder="{{topic}}" slot="footer" bindinput="bindKeyInput" />
+                    </mp-cell>
+                    <mp-cell>
+                        <view>选择日期</view>
+                        <picker mode="date" value="{{date}}" bindchange="bindDateChange" slot="footer">
+                            <view class="picker">
+                                {{date}}
+                            </view>
+                        </picker>
+                    </mp-cell>
+                    <mp-cell>
+                        <view>选择时间</view>
+                        <picker mode="time" value="{{time}}" bindchange="bindTimeChange" slot="footer">
+                            <view>
+                                {{time}}
+                            </view>
+                        </picker>
+                    </mp-cell>
+                </mp-cells>
+           </view>
+        </mp-half-screen-dialog>
+
+
+
+        <view class="card" wx:for="{{timer}}" wx:key="index">
+            <text class="title">{{item.topic}}</text>
+            <text>
+                <text class="time">{{item.t.d}}</text>day <text class="time">{{item.t.h}}</text>H <text
+                    class="time">{{item.t.m}}</text>m <text class="time">{{item.t.s}}</text>s 
+            </text>
+        </view>
+        <view wx:if="{{timer.length == 0}}">
+            空空如也，未来可期
+        </view>
+
+
+        <view>
+        <button class="weui-btn" type="primary" bindtap="open">新建倒计时</button>
+        </view>
+    </view>
+</view>
